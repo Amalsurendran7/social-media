@@ -84,7 +84,7 @@ CORS_ORIGIN_WHITELIST = (
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR,'frontend/build')],
+        'DIRS': [os.path.join(BASE_DIR,'build')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -188,7 +188,7 @@ STATICFILES_STORAGE='storages.backends.s3boto3.S3Boto3Storage'
 
 
 STATIC_URL = 'static/'
-STATICFILES_DIRS=[os.path.join(BASE_DIR,'frontend/build/static')]
+STATICFILES_DIRS=[os.path.join(BASE_DIR,'build/static')]
 # MEDIA_URL='/media/'
 # MEDIA_ROOT=os.path.join(BASE_DIR,'Rdjango1')
 
