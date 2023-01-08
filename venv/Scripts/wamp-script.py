@@ -1,4 +1,4 @@
-#!"C:\Users\HP\OneDrive\Desktop\social Media\Rdjango1\venv\Scripts\python.exe"
+#!C:\Users\HP\OneDrive\Desktop\backend\Rdjango1\venv\Scripts\python.exe
 # EASY-INSTALL-ENTRY-SCRIPT: 'autobahn==22.12.1','console_scripts','wamp'
 import re
 import sys

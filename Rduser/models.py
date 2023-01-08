@@ -18,7 +18,7 @@ class customer(models.Model):
     following=models.IntegerField(default=False)
  
     online=models.BooleanField(default=False)
-    profile_pic=models.FileField(upload_to='frontend/src/post_images',default=False)
+    profile_pic=models.FileField(upload_to='images',null=True)
     string_pic=models.CharField(max_length=100,default=False)
     password=models.CharField(max_length=150)
     otp=models.CharField(max_length=150,null=True,blank=True)

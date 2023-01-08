@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
      'channels',
      'my_chat',
-    'channels_redis',
+
     'rest_framework',
      'Rduser',
     'corsheaders',
@@ -49,6 +49,8 @@ INSTALLED_APPS = [
     'home',
     'admin_',
     'group',
+
+    'storages',
 
 ]
 
@@ -82,7 +84,7 @@ CORS_ORIGIN_WHITELIST = (
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['Templates'],
+        'DIRS': [os.path.join(BASE_DIR,'frontend/build')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -95,7 +97,7 @@ TEMPLATES = [
     },
 ]
 
-# WSGI_APPLICATION = 'Rdjango1.wsgi.application'
+WSGI_APPLICATION = 'Rdjango1.wsgi.application'
 
 
 ASGI_APPLICATION = 'my_chat.routing.application'
@@ -122,7 +124,7 @@ CHANNEL_LAYERS = {
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-'NAME': 'new2', #use your database name here at the time of creation
+'NAME': 'social', #use your database name here at the time of creation
 'USER': 'postgres', #use your database username here at the time of creation
 'PASSWORD': 't', #use your database password here at the time of creation
 'HOST': 'localhost',
@@ -136,7 +138,7 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'amal76735@gmail.com'
-EMAIL_HOST_PASSWORD = 'kxcmyyihobcrfzti'
+EMAIL_HOST_PASSWORD = 'zzywnocmhdetmvfd'
 
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -166,13 +168,29 @@ USE_I18N = True
 USE_TZ = True
 
 
+AWS_ACCESS_KEY_ID = 'AKIAU76JH7DSKEN6B2YB'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'amalcrm1-bucket'
+AWS_S3_FILE_OVERWRITE=False
+AWS_DEFAULT_ACL=None
+DEFAULT_FILE_STORAGE='storages.backends.s3boto3.S3Boto3Storage'
+STATICFILES_STORAGE='storages.backends.s3boto3.S3Boto3Storage'
+
+# AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+# AWS_S3_OBJECT_PARAMETERS = {
+#     'CacheControl': 'max-age=86400',
+# }
+# AWS_LOCATION = 'static'
+
+
 
 
 
 
 STATIC_URL = 'static/'
-
-
+STATICFILES_DIRS=[os.path.join(BASE_DIR,'frontend/build/static')]
+# MEDIA_URL='/media/'
+# MEDIA_ROOT=os.path.join(BASE_DIR,'Rdjango1')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 

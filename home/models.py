@@ -5,7 +5,7 @@ from django.core.validators import FileExtensionValidator
 # Create your models here.
 
 class Posts(models.Model):
-    file = models.FileField(upload_to='frontend/src/post_images')
+    file = models.FileField(upload_to='images',null=True)
     # video = models.FileField(upload_to='frontend/src/post_videos',null=True,
     # validators=[FileExtensionValidator(allowed_extensions=['MOV','avi','mp4','webm','mkv'])])
     caption=models.TextField(default=False)
@@ -46,7 +46,7 @@ class followers(models.Model):
         follower=models.CharField(max_length=100)
 
 class Status_model(models.Model):
-    status=models.FileField(upload_to='frontend/src/post_images')
+    status=models.FileField(upload_to='images',null=True)
     user=models.ForeignKey(customer,on_delete=models.CASCADE,related_name="status_by",null=True)
     # created_at = models.DateField(auto_now_add=True)
          

@@ -8,7 +8,6 @@ from .models import *
 from .serializers import *
 from .tasks import *
 
-from rest_framework_simplejwt.views import TokenVerifyView
 from rest_framework.decorators import api_view
 from rest_framework import viewsets 
 from rest_framework.permissions import IsAuthenticated
@@ -61,15 +60,26 @@ class pos(APIView):
               
             #   @receiver(post_save,sender=customer)
             #   def send_email(sender, **kwargs):
-                celery_email(email,username)
+                # celery_email(email,username)
+                subject = 'Email verification'
+                myuuid = uuid.uuid4()
+                print(email)
+                
+                message = "http://127.0.0.1:3000/thank/"+str(myuuid)+"/"+username
+                email_from = 'amal76735@gmail.com'
+                
+                recipient_list=[email]
+                
+                send_mail( subject, message, email_from ,recipient_list)
+
                 
                 # refresh = RefreshToken.for_user(serializer.data)
 
                 return Response(serializer.data)
         return Response({serializer.errors}) 
 
-def celery_email(email,username):
-    send_email_task.delay(email,username)
+# def celery_email(email,username):
+#     send_email_task.delay(email,username)
 
 
 def send_email(email,username):
