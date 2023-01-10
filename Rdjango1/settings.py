@@ -12,6 +12,11 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 import os
+import environ
+
+
+env = environ.Env()
+environ.Env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,7 +31,8 @@ SECRET_KEY = 'django-insecure-)izdyvsxxib1nv&j@**@!p8yy8c3!3h05dhh0z68b1c4ywcuwu
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['52.68.105.27','localhost']
+
 
 
 # Application definition
@@ -54,8 +60,6 @@ INSTALLED_APPS = [
 
 ]
 
-# MEDIA_ROOT = 'frontend/src/components/media'
-# MEDIA_URL = '/media/'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -76,7 +80,7 @@ CORS_ORIGIN_WHITELIST = (
   'http://localhost:3000',
 )
 
-
+SECURE_CROSS_ORIGIN_OPENER_POLICY=None
 
 
 
@@ -102,14 +106,7 @@ WSGI_APPLICATION = 'Rdjango1.wsgi.application'
 
 ASGI_APPLICATION = 'my_chat.routing.application'
 
-# CHANNEL_LAYERS = {
-#     'default': {
-#         'BACKEND': 'channels_redis.core.RedisChannelLayer',
-#         'CONFIG':{
-#             'hosts':['127.0.0.1','6379'],
-#         },
-#         },
-#     }
+
 
 
 CHANNEL_LAYERS = {
@@ -124,11 +121,11 @@ CHANNEL_LAYERS = {
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-'NAME': 'social', #use your database name here at the time of creation
-'USER': 'postgres', #use your database username here at the time of creation
-'PASSWORD': 't', #use your database password here at the time of creation
+'NAME': 'myproject', #use your database name here at the time of creation
+'USER': 'myprojectuser', #use your database username here at the time of creation
+'PASSWORD': 'password', #use your database password here at the time of creation
 'HOST': 'localhost',
-'PORT': '5432',
+'PORT': '',
 
     }
 }
@@ -168,40 +165,19 @@ USE_I18N = True
 USE_TZ = True
 
 
-AWS_ACCESS_KEY_ID = 'AKIAU76JH7DSKEN6B2YB'
-AWS_SECRET_ACCESS_KEY = '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'
-AWS_STORAGE_BUCKET_NAME = 'amalcrm1-bucket'
+AWS_ACCESS_KEY_ID = env('AWS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = env('AWS_SECRET')
+AWS_STORAGE_BUCKET_NAME = env('AWS_BUCKET')
 AWS_S3_FILE_OVERWRITE=False
 AWS_DEFAULT_ACL=None
 DEFAULT_FILE_STORAGE='storages.backends.s3boto3.S3Boto3Storage'
 STATICFILES_STORAGE='storages.backends.s3boto3.S3Boto3Storage'
 
-# AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
-# AWS_S3_OBJECT_PARAMETERS = {
-#     'CacheControl': 'max-age=86400',
-# }
-# AWS_LOCATION = 'static'
-
-
-
-
 
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS=[os.path.join(BASE_DIR,'build/static')]
-# MEDIA_URL='/media/'
-# MEDIA_ROOT=os.path.join(BASE_DIR,'Rdjango1')
+
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# SOCIALACCOUNT_PROVIDERS = {
-#     'google': {
-#         'SCOPE': [
-#             'profile',
-#             'email',
-#         ],
-#         'AUTH_PARAMS': {
-#             'access_type': 'online',
-#         }
-#     }
-# }
